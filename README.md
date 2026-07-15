@@ -1,28 +1,96 @@
-# Household Account Book Mobile App
+# Zeno — Household Account Book
 
-This repository is prepared as a handoff workspace for building a cross-platform household account book app for Android and iOS.
+Zeno is a cross-platform (Android + iOS) household account book built with Expo
+React Native and a small backend API. It focuses on fast spending entry,
+remaining-balance calculations, monthly insights, multilingual settings, AI
+usage suggestions, and nearby affordable food/item suggestions — all working
+offline for the core flows.
 
-Start here:
+> Secrets never live in the mobile app. AI provider keys, map/place keys, and
+> store credentials stay on the backend and are read from environment variables.
 
-1. Read [CLAUDE.md](CLAUDE.md).
-2. For the urgent Gradle/JDK, Poco F6 USB debugging, troubleshooting, and translation handoff, read [docs/07_CLAUDE_URGENT_GRADLE_USB_TROUBLESHOOTING_PROMPT.md](docs/07_CLAUDE_URGENT_GRADLE_USB_TROUBLESHOOTING_PROMPT.md).
-3. For the current enhancement pass, read [docs/05_ENHANCEMENT_BRIEF_2026-07-06.md](docs/05_ENHANCEMENT_BRIEF_2026-07-06.md).
-4. For cleanup and USB phone testing setup, read [docs/06_CLAUDE_CLEANUP_USB_DEBUGGING_PROMPT.md](docs/06_CLAUDE_CLEANUP_USB_DEBUGGING_PROMPT.md).
-5. Read [docs/01_PRODUCT_REQUIREMENTS.md](docs/01_PRODUCT_REQUIREMENTS.md).
-6. Read [docs/02_PROJECT_STRUCTURE.md](docs/02_PROJECT_STRUCTURE.md).
-7. Follow [docs/03_IMPLEMENTATION_PLAN.md](docs/03_IMPLEMENTATION_PLAN.md).
-8. Verify with [docs/04_TESTING_AND_RELEASE.md](docs/04_TESTING_AND_RELEASE.md).
+## Features
 
-Recommended stack: Expo React Native with TypeScript for the mobile app, plus a small backend API for AI and nearby-place integrations so secrets never live inside the mobile app.
+- **Ledger** — quick spending entry with categories and an offline-first store.
+- **Remaining balance** — monthly remaining balance and category budget math in a
+  single shared calculation engine (unit-tested).
+- **Insights** — monthly charts and comparison statements.
+- **AI suggestions** — personalized advice via the backend (safe mock when no key
+  is configured).
+- **Nearby** — estimated low-cost nearby options; location permission is only
+  requested when the feature is opened.
+- **Localization** — 14+ languages, defaulting to the phone language with an
+  in-app override.
+- **Currency** — defaults from device region signal (e.g. MYR for Malaysia) with
+  an in-app override.
 
-## Current Android Testing Target
+## Monorepo layout
 
-The current priority is a development build installed on the owner's Poco F6 through USB debugging, not Expo Go. If Gradle reports `Gradle 7.5.1` with `Java 26.0.1`, first make sure the project wrapper and a supported JDK are being used.
-
-Useful commands:
-
-```powershell
-pnpm adb:devices
-pnpm adb:reverse
-pnpm android:device
 ```
+apps/
+  mobile/     Expo React Native app (Expo Router, TypeScript)
+  api/        Node.js + Fastify backend (AI + nearby routes)
+packages/
+  shared/     Zod schemas, money/calculation utils, API contracts, i18n keys
+  config/     Shared TypeScript config
+docs/         Product, structure, implementation, testing & release docs
+```
+
+## Tech stack
+
+- **Mobile**: Expo React Native, Expo Router, TypeScript, Zustand, TanStack
+  Query, `expo-sqlite`, React Hook Form + Zod, i18next.
+- **Backend**: Node.js + Fastify (TypeScript).
+- **Shared**: Zod schemas + money/calculation utilities.
+- **Tooling**: pnpm workspaces, Jest, EAS Build/Submit.
+
+## Getting started
+
+```bash
+pnpm install
+
+pnpm dev:api        # start the backend API
+pnpm dev:mobile     # start Metro / the mobile app
+```
+
+### Android on a physical device (USB debugging)
+
+The current testing target is a development build installed on a physical device
+over USB debugging (not Expo Go). The project ships a Gradle 8.10.2 wrapper and
+targets JDK 17.
+
+```bash
+pnpm adb:devices    # confirm the phone is connected
+pnpm adb:reverse    # adb reverse tcp:8081 + tcp:3000
+pnpm android:device # build & install the dev client
+```
+
+### Useful scripts
+
+| Command            | Description                          |
+| ------------------ | ------------------------------------ |
+| `pnpm build`       | Build all workspaces                 |
+| `pnpm test`        | Run all tests                        |
+| `pnpm typecheck`   | Type-check all workspaces            |
+| `pnpm lint`        | Lint all workspaces                  |
+
+## Environment variables
+
+The backend reads secrets from the environment. Copy these into a `.env` file in
+`apps/api/` (never commit it):
+
+| Variable            | Purpose                                            |
+| ------------------- | -------------------------------------------------- |
+| `ANTHROPIC_API_KEY` | Enables real AI advice; a safe mock is used if unset |
+
+## Documentation
+
+- [CLAUDE.md](CLAUDE.md) — build instructions and non-negotiable rules
+- [docs/01_PRODUCT_REQUIREMENTS.md](docs/01_PRODUCT_REQUIREMENTS.md)
+- [docs/02_PROJECT_STRUCTURE.md](docs/02_PROJECT_STRUCTURE.md)
+- [docs/03_IMPLEMENTATION_PLAN.md](docs/03_IMPLEMENTATION_PLAN.md)
+- [docs/04_TESTING_AND_RELEASE.md](docs/04_TESTING_AND_RELEASE.md)
+
+## License
+
+Released under the [MIT License](LICENSE).
