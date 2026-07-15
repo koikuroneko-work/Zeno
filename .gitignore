@@ -1,0 +1,39 @@
+# Cleanup files from Claude cleanup
+apps/mobile/export/
+apps/mobile/.expo/
+apps/mobile/android/.gradle/
+apps/mobile/android/app/build/
+packages/shared/dist/
+*.bak
+*.cjs
+*.js
+
+# Dependencies
+node_modules/
+apps/*/node_modules/
+packages/*/node_modules/
+
+# IDE
+.idea/
+*.iml
+
+# Build logs
+*.log
+build_output.log
+build2_output.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Expo
+.expo/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db

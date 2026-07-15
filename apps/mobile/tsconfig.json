@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "jsx": "react-native",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "react-native",
+      "jest"
+    ],
+    "ignoreDeprecations": "5.0",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "shared": [
+        "../../packages/shared/src"
+      ],
+      "shared/*": [
+        "../../packages/shared/src/*"
+      ]
+    }
+  },
+  "include": [
+    "app/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "extends": "expo/tsconfig.base"
+}

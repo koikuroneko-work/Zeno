@@ -1,0 +1,36 @@
+{
+  "name": "zeno",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mobile": "pnpm --filter mobile dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "prepare": "husky install",
+    "adb:devices": "adb devices",
+    "adb:reverse": "adb reverse tcp:8081 tcp:8081 && adb reverse tcp:3000 tcp:3000",
+    "android:device": "pnpm --filter mobile android:device",
+    "dev:android-device": "pnpm --filter mobile android:device"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^14.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "husky": "^9.1.0",
+    "typescript": "^5.3.0",
+    "uuid": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@11.9.0"
+}

@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "zeno-prod"
+      }
+    },
+    "android": {
+      "package": "com.zeno.app"
+    }
+  }
+}

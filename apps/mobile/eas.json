@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "version": ">= 3.0.9",
+    "prompt": {
+      "login": false
+    }
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleDebug"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "production": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

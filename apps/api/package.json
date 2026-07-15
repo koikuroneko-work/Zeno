@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.0",
+    "fastify": "^5.0.0",
+    "shared": "workspace:*",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.0.0",
+    "jest": "^30.4.2",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0"
+  }
+}

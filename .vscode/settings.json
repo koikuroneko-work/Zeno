@@ -1,0 +1,14 @@
+{
+  // Disable Gradle extension auto-scan — it scans node_modules/.pnpm expo modules
+  // and tries to configure them with Gradle 9.2 (incompatible with AGP).
+  // Use `./gradlew` from the terminal instead — it correctly uses wrapper 8.11.1.
+  "gradle.autoDetect": "off",
+
+  // Only scan the real project's android directory if needed
+  "gradle.nestedProjects": false,
+
+  // Hide the node_modules and .pnpm gradle build errors from Problems pane
+  "files.exclude": {
+    "node_modules": true
+  }
+}
