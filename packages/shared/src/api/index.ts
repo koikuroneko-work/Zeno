@@ -16,7 +16,6 @@ export const aiMonthlyPayloadSchema = z.object({
     z.object({
       categoryId: z.string(),
       limitMinor: z.number().int(),
- onlyIfReturnedByBackendOnly: z.string().optional(),
     })
   ),
 });

@@ -329,7 +329,8 @@
     "warning90": "🚨 大警告！予算の90%が消失！不要な支出を止めて！ 🚨",
     "overBudget": "今日は予算オーバー！また明日挑戦💪",
     "coinEarned": "+1 ミスティックコイン獲得！🪙",
-    "setInSettings": "設定で予算を設定"
+    "setInSettings": "設定で予算を設定",
+    "noExpenses": "今日の支出はありません。チャレンジ達成です！🏆"
   },
   "mysticCoins": {
     "title": "ミスティックコイン",

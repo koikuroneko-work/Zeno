@@ -63,7 +63,10 @@
     "noData": "첫 번째 거래를 추가해보세요!",
     "doingFine": "이번 주에는 잘 하고 있어요",
     "closeToLimit": "한도에 근접 중",
-    "overBudget": "예산 초과"
+    "overBudget": "예산 초과",
+    "notePlaceholder": "오늘을 위한 메모를 추가하세요...",
+    "reminder": "알림",
+    "setReminder": "알림 설정"
   },
   "transactions": {
     "addTitle": "거래 추가",
@@ -86,6 +89,8 @@
     "merchantPlaceholder": "가맹점 이름",
     "datePlaceholder": "날짜 선택",
     "confirm": "확인",
+    "notFound": "거래를 찾을 수 없습니다",
+    "detailTitle": "거래 상세",
     "breakfast": "아침식사",
     "lunch": "점심식사",
     "dinner": "저녁식사",
@@ -128,12 +133,12 @@
     "monthly": "월별 요약",
     "categoryBreakdown": "카테고리별 분석",
     "dailyTrend": "일별 추이",
-    "topCategory": "Top category: {{category}}",
-    "topCategoryPercent": "{{percent}}% of total spending",
+    "topCategory": "주요 카테고리: {{category}}",
+    "topCategoryPercent": "총 지출의 {{percent}}%",
     "tips": "팁",
     "chart": {
-      "categoryBreakdown": "Category Breakdown",
-      "spendingTrend": "Spending Trend"
+      "categoryBreakdown": "카테고리별 분석",
+      "spendingTrend": "지출 추이"
     },
     "compare": {
       "higher": "지출이 지난 달보다 {{percent}}% 높습니다.",
@@ -298,8 +303,8 @@
     "mysticCoinsInfo": "데일리 챌린지 완료 시 획득"
   },
   "currency": {
-    "autoDetected": "Auto-detected ({{code}})",
-    "manual": "Manual"
+    "autoDetected": "자동 감지 ({{code}})",
+    "manual": "수동"
   },
   "datePicker": {
     "title": "알림 시간 설정",
@@ -324,7 +329,8 @@
     "warning90": "🚨 위험! 예산의 90%가 소진됐습니다! 지출을 중단하세요! 🚨",
     "overBudget": "오늘은 예산 초과! 내일 다시 도전💪",
     "coinEarned": "+1 미스틱 코인 획득! 🪙",
-    "setInSettings": "설정에서 설정"
+    "setInSettings": "설정에서 설정",
+    "noExpenses": "오늘 지출 내역이 없습니다. 챌린지 달성! 🏆"
   },
   "mysticCoins": {
     "title": "미스틱 코인",

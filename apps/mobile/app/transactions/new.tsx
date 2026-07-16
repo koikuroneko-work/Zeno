@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Modal, FlatList, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Modal, FlatList } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -24,7 +24,7 @@ export default function NewTransactionScreen() {
   const { addTransaction } = useTransactionStore();
   const { currency } = useSettingsStore();
 
-  const types: Array<{ value: TransactionType; label: string }> = [
+  const types: { value: TransactionType; label: string }[] = [
     { value: 'expense', label: t('transactions.expense') },
     { value: 'income', label: t('transactions.income') },
     { value: 'transfer', label: t('transactions.transfer') },
@@ -360,7 +360,7 @@ export default function NewTransactionScreen() {
                 { id: 'allowance', nameKey: 'allowance', icon: categoryIcons.allowance },
                 { id: 'bonus', nameKey: 'bonus', icon: categoryIcons.bonus },
                 { id: 'other', nameKey: 'other', icon: categoryIcons.other },
-              ] as Array<{ id: string; nameKey: string; icon: CategoryIconName }>
+              ] as { id: string; nameKey: string; icon: CategoryIconName }[]
             ) : (
               [
                 { id: 'food', nameKey: 'food', icon: categoryIcons.food },
@@ -375,7 +375,7 @@ export default function NewTransactionScreen() {
                 { id: 'health', nameKey: 'health', icon: categoryIcons.health },
                 { id: 'education', nameKey: 'education', icon: categoryIcons.education },
                 { id: 'other', nameKey: 'other', icon: categoryIcons.other },
-              ] as Array<{ id: string; nameKey: string; icon: CategoryIconName }>
+              ] as { id: string; nameKey: string; icon: CategoryIconName }[]
             )}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (

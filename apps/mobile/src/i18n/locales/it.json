@@ -16,7 +16,7 @@
     "done": "Fatto"
   },
   "navigation": {
-    "home": "Home",
+    "home": "Start",
     "ledger": "Registro",
     "add": "Aggiungi",
     "ai": "IA",
@@ -43,7 +43,7 @@
     "permissionsLater": "Puoi attivare i permessi più tardi nelle impostazioni."
   },
   "home": {
-    "title": "Home",
+    "title": "Start",
     "subtitle": "Bentornato! Ecco la tua panoramica finanziaria.",
     "monthOverview": "Questo mese",
     "income": "Entrate",
@@ -102,7 +102,7 @@
     "health": "Salute",
     "education": "Istruzione",
     "salary": "Stipendio",
-    "freelance": "Freelance",
+    "freelance": "Libero professionista",
     "investment": "Investimento",
     "rental": "Affitto",
     "gift": "Regalo",
@@ -121,7 +121,7 @@
     "empty": "Nessuna registrazione. Tocca + per aggiungerne una."
   },
   "budget": {
-    "title": "Budget",
+    "title": "Bilancio",
     "setLimit": "Imposta limite",
     "safe": "Sicuro",
     "attention": "Attenzione",
@@ -322,14 +322,15 @@
     "noBudget": "Nessun budget giornaliero impostato. Impostane uno nelle Impostazioni per iniziare la sfida!",
     "progress": "{{percent}}% del budget giornaliero",
     "spent": "Speso",
-    "budget": "Budget",
+    "budget": "Bilancio",
     "remaining": "{{amount}} rimasti",
     "underBudget": "Sei sulla buona strada! Continua così 👍",
     "warning60": "🐢 Ohi! Hai usato il 60% del tuo budget giornaliero. Rallenta!",
     "warning90": "🚨 ALLARME ROSSO! Il 90% del budget è esaurito! Ferma le spese! 🚨",
     "overBudget": "Oggi hai superato il budget! Riprova domani 💪",
     "coinEarned": "Hai guadagnato +1 Moneta Mistica! 🪙",
-    "setInSettings": "Imposta nelle Impostazioni"
+    "setInSettings": "Imposta nelle Impostazioni",
+    "noExpenses": "Nessuna spesa oggi. Sfida già vinta! 🏆"
   },
   "mysticCoins": {
     "title": "Monete Mistiche",

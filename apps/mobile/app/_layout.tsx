@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 import { View, Text, TouchableOpacity, ActivityIndicator, Platform, Animated, StatusBar, Image } from 'react-native';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
@@ -42,36 +42,65 @@ export default function RootLayout() {
   const taglineOpacity = useRef(new Animated.Value(0)).current;
 
   // ═══ Kick off splash spring animation ═══
-  const animateSplash = () => {
-    Animated.sequence([
-      // Logo bounces in with spring
-      Animated.parallel([
-        Animated.spring(logoScale, {
+  const animateSplash = useCallback(
+    (onComplete?: () => void) => {
+      Animated.sequence([
+        // Logo bounces in with spring
+        Animated.parallel([
+          Animated.spring(logoScale, {
+            toValue: 1,
+            tension: 80,
+            friction: 6,
+            useNativeDriver: true,
+          }),
+          Animated.timing(logoOpacity, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ]),
+        // Tagline fades in after logo settles
+        Animated.timing(taglineOpacity, {
           toValue: 1,
-          tension: 80,
-          friction: 6,
+          duration: 500,
           useNativeDriver: true,
         }),
-        Animated.timing(logoOpacity, {
-          toValue: 1,
-          duration: 400,
-          useNativeDriver: true,
-        }),
-      ]),
-      // Tagline fades in after logo settles
-      Animated.timing(taglineOpacity, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }),
-    ]).start();
-
-    // Native splash no longer needed
-    SplashScreen.hideAsync().catch(() => {});
-  };
+      ]).start(() => {
+        // Native splash no longer needed — hide it at animation end so the
+        // React splash takes over seamlessly.
+        SplashScreen.hideAsync().catch(() => {});
+        // Keep the finished (animated) React splash visible for a short beat so
+        // the logo/tagline motion actually reads, then transition to the app.
+        // Bounded and fast — not the old fixed 1.4s floor.
+        setTimeout(() => onComplete?.(), 350);
+      });
+    },
+    [logoScale, logoOpacity, taglineOpacity],
+  );
 
   // Check if permission onboarding has been shown before
   useEffect(() => {
+    // Reveal the app once the splash animation finishes. A safety timeout
+    // guarantees we never get stuck on the splash if the animation callback is
+    // missed (max wait ~1.5s on slow devices, instead of a fixed 1.4s floor on
+    // every launch).
+    let revealed = false;
+    const reveal = () => {
+      if (revealed) return;
+      revealed = true;
+      setLoading(false);
+    };
+    const safety = setTimeout(reveal, 1500);
+
+    // Hide the native (transparent) splash immediately so the animated React
+    // splash is the only thing visible from the first frame — no icon-on-white
+    // flash. The native splash is just an OS bridge now.
+    SplashScreen.hideAsync().catch(() => {});
+
+    // Kick off the splash animation immediately on mount — don't wait for the
+    // async storage/notification work below, which would delay the logo motion.
+    animateSplash(reveal);
+
     (async () => {
       try {
         // Create Android notification channel (required for Android 8+)
@@ -91,11 +120,9 @@ export default function RootLayout() {
           });
         }
 
-        // Initialize currency from device locale on first launch
-        const settingsState = useSettingsStore.getState();
-        if (!settingsState.currencyInitialized) {
-          settingsState.initializeCurrency().catch(console.error);
-        }
+        // Currency is initialized once via the settings store's
+        // onRehydrateStorage hook on first launch — no need to trigger it here
+        // (avoids a duplicate GPS + network resolution on startup).
 
         const shown = await AsyncStorage.getItem(PERMISSIONS_SHOWN_KEY);
         if (shown !== 'true') {
@@ -103,15 +130,11 @@ export default function RootLayout() {
         }
       } catch {
         // If we can't read storage, just show the app
-      } finally {
-        animateSplash();
-        // Let the splash animation play before transitioning
-        setTimeout(() => {
-          setLoading(false);
-        }, 1400);
       }
     })();
-  }, []);
+
+    return () => clearTimeout(safety);
+  }, [animateSplash]);
 
   const handleRequestNotifications = async () => {
     if (!Device.isDevice) {

@@ -21,7 +21,7 @@
     "add": "Adicionar",
     "ai": "IA",
     "nearby": "Próximo",
-    "insights": "Insights",
+    "insights": "Análises",
     "settings": "Configurações"
   },
   "onboarding": {
@@ -102,7 +102,7 @@
     "health": "Saúde",
     "education": "Educação",
     "salary": "Salário",
-    "freelance": "Freelance",
+    "freelance": "Autônomo",
     "investment": "Investimento",
     "rental": "Aluguel",
     "gift": "Presente",
@@ -129,7 +129,7 @@
     "over": "Excedido"
   },
   "insights": {
-    "title": "Insights",
+    "title": "Análises",
     "monthly": "Resumo mensal",
     "categoryBreakdown": "Análise por categoria",
     "dailyTrend": "Tendência diária",
@@ -329,7 +329,8 @@
     "warning90": "🚨 ALERTA VERMELHO! 90% do orçamento esgotado! Pára de gastar! 🚨",
     "overBudget": "Hoje excedeste o orçamento! Tenta novamente amanhã 💪",
     "coinEarned": "Ganhaste +1 Moeda Mística! 🪙",
-    "setInSettings": "Definir nas Configurações"
+    "setInSettings": "Definir nas Configurações",
+    "noExpenses": "Sem gastos hoje. Desafio já ganho! 🏆"
   },
   "mysticCoins": {
     "title": "Moedas Místicas",

@@ -329,7 +329,8 @@
     "warning90": "🚨 红色警报！预算已用掉90%！停止不必要的消费！🚨",
     "overBudget": "今天超预算了！明天再挑战💪",
     "coinEarned": "你获得了 +1 神秘硬币！🪙",
-    "setInSettings": "在设置中设定"
+    "setInSettings": "在设置中设定",
+    "noExpenses": "今天没有支出。挑战已达成！🏆"
   },
   "mysticCoins": {
     "title": "神秘硬币",

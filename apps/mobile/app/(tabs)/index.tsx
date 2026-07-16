@@ -92,7 +92,17 @@ const DateTimeWeatherCard = memo(function DateTimeWeatherCard() {
           if (!cancelled) setWeather(w => ({ ...w, loading: false }));
           return;
         }
-        const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
+        // Bound the GPS fix — getCurrentPositionAsync has no built-in timeout and
+        // can hang on a cold start. Prefer a cached last-known position for speed,
+        // then race a fresh fix against a hard timeout.
+        const pos =
+          (await Location.getLastKnownPositionAsync({ maxAge: 600_000 })) ??
+          (await Promise.race<Location.LocationObject>([
+            Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low }),
+            new Promise<Location.LocationObject>((_, reject) =>
+              setTimeout(() => reject(new Error('gps-timeout')), 8000),
+            ),
+          ]));
         const res = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current_weather=true&timezone=auto`,
           { headers: { 'User-Agent': 'Zeno/0.1' } },

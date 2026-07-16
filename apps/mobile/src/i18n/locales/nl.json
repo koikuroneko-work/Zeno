@@ -16,7 +16,7 @@
     "done": "Klaar"
   },
   "navigation": {
-    "home": "Home",
+    "home": "Start",
     "ledger": "Grootboek",
     "add": "Toevoegen",
     "ai": "AI",
@@ -43,7 +43,7 @@
     "permissionsLater": "Je kunt machtigingen later inschakelen in de instellingen."
   },
   "home": {
-    "title": "Home",
+    "title": "Start",
     "subtitle": "Welkom terug! Hier is je financiële overzicht.",
     "monthOverview": "Deze maand",
     "income": "Inkomsten",
@@ -63,7 +63,7 @@
     "noData": "Voeg je eerste transactie toe om te beginnen!",
     "doingFine": "Je doet het goed deze week",
     "closeToLimit": "Dicht bij de limiet",
-    "overBudget": "Over budget",
+    "overBudget": "Boven budget",
     "notePlaceholder": "Notitie toevoegen voor vandaag...",
     "reminder": "Herinnering",
     "setReminder": "Herinnering instellen"
@@ -98,11 +98,11 @@
     "shopping": "Winkelen",
     "transport": "Vervoer",
     "bills": "Rekeningen",
-    "entertainment": "Entertainment",
+    "entertainment": "Vermaak",
     "health": "Gezondheid",
     "education": "Onderwijs",
     "salary": "Salaris",
-    "freelance": "Freelance",
+    "freelance": "Freelancer",
     "investment": "Investering",
     "rental": "Huurinkomsten",
     "gift": "Cadeau",
@@ -329,7 +329,8 @@
     "warning90": "🚨 ROOD ALARM! 90% van je budget is op! Stop met uitgeven! 🚨",
     "overBudget": "Vandaag over budget! Probeer het morgen opnieuw 💪",
     "coinEarned": "Je hebt +1 Mystieke Munt verdiend! 🪙",
-    "setInSettings": "Instellen bij Instellingen"
+    "setInSettings": "Instellen bij Instellingen",
+    "noExpenses": "Geen uitgaven vandaag. Uitdaging al gewonnen! 🏆"
   },
   "mysticCoins": {
     "title": "Mystieke Munten",

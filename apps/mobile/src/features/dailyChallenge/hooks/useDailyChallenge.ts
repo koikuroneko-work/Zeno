@@ -63,7 +63,6 @@ export function useDailyChallenge(): DailyChallengeResult {
   const dailyBudget = useSettingsStore((s) => s.dailyBudget);
   const currency = useSettingsStore((s) => s.currency);
   const coins = useMysticCoinStore((s) => s.coins);
-  const lastRewardDate = useMysticCoinStore((s) => s.lastRewardDate);
   const awardDailyCoin = useMysticCoinStore((s) => s.awardDailyCoin);
 
   const todayDateStr = getLocalDateString();
@@ -108,13 +107,17 @@ export function useDailyChallenge(): DailyChallengeResult {
     if (todayExpenses > dailyBudget) return;
 
     const awarded = awardDailyCoin(todayDateStr);
-    if (awarded) {
-      setCoinJustAwarded(true);
-      // Clear the celebration message after 4 seconds
-      const timer = setTimeout(() => setCoinJustAwarded(false), 4000);
-      // Use the ref so cleanup only fires when the effect re-runs naturally
+    if (!awarded) {
+      hasAttemptedAward.current = true;
+      return;
     }
+
+    setCoinJustAwarded(true);
+    // Clear the celebration message after 4 seconds
+    const timer = setTimeout(() => setCoinJustAwarded(false), 4000);
+
     hasAttemptedAward.current = true;
+    return () => clearTimeout(timer);
   }, [dailyBudget, todayExpenses, todayDateStr, awardDailyCoin]);
 
   return {

@@ -247,10 +247,18 @@ export class CurrencyResolver {
         return null;
       }
 
-      // Get current GPS position
-      const pos = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Low, // Low accuracy is faster, good enough for country resolution
-      });
+      // Get current GPS position. expo-location's getCurrentPositionAsync has no
+      // built-in timeout, so a slow cold GPS fix (e.g. indoors, first launch)
+      // can hang for tens of seconds. Race it against a hard timeout so we fail
+      // fast and fall back to timezone/locale currency resolution.
+      const pos = await Promise.race<Location.LocationObject>([
+        Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Low, // Low accuracy is faster, good enough for country resolution
+        }),
+        new Promise<Location.LocationObject>((_, reject) =>
+          setTimeout(() => reject(new Error('gps-timeout')), 8000),
+        ),
+      ]);
       const { latitude, longitude } = pos.coords;
 
       // Reverse geocode via Nominatim (free, no API key — OpenStreetMap family)
@@ -280,8 +288,12 @@ export class CurrencyResolver {
 
       return null;
     } catch (error) {
-      // Don't log aborts (timeouts) as warnings
-      if (error instanceof DOMException && error.name === 'AbortError') {
+      // Don't log aborts / GPS timeouts as warnings — they're expected on slow
+      // cold starts and we fall back to timezone/locale currency resolution.
+      if (
+        (error instanceof DOMException && error.name === 'AbortError') ||
+        (error instanceof Error && error.message === 'gps-timeout')
+      ) {
         return null;
       }
       console.warn('Failed to resolve currency from location:', error);

@@ -141,7 +141,7 @@ function AdviceCard({ item }: { item: AiAdviceResponse['advice'][number] }) {
 
 export default function AISuggestionsScreen() {
   const { t } = useTranslation();
-  const { aiEnabled, currency, dailyBudget, language } = useSettingsStore();
+  const { aiEnabled, currency, dailyBudget } = useSettingsStore();
   const transactions = useTransactionStore((s) => s.transactions);
 
   const [result, setResult] = useState<AiAdviceResponse | null>(null);
@@ -159,12 +159,12 @@ export default function AISuggestionsScreen() {
     } finally {
       setLoading(false);
     }
-  }, [transactions, currency, dailyBudget, language]);
+  }, [transactions, currency, dailyBudget]);
 
   useEffect(() => {
     if (!aiEnabled || transactions.length < 3) return;
     loadAdvice();
-  }, [transactions, currency, dailyBudget, language]);
+  }, [aiEnabled, transactions, currency, dailyBudget, loadAdvice]);
 
   // Guard screens
   if (!aiEnabled) return <DisabledScreen />;

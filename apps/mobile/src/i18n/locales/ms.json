@@ -102,7 +102,7 @@
     "health": "Kesihatan",
     "education": "Pendidikan",
     "salary": "Gaji",
-    "freelance": "Freelance",
+    "freelance": "Bebas",
     "investment": "Pelaburan",
     "rental": "Sewa",
     "gift": "Hadiah",
@@ -329,7 +329,8 @@
     "warning90": "🚨 BAHAYA! 90% bajet telah habis! Hentikan perbelanjaan! 🚨",
     "overBudget": "Melebihi bajet hari ini! Cuba lagi esok 💪",
     "coinEarned": "Anda dapat +1 Syiling Mistik! 🪙",
-    "setInSettings": "Tetapkan di Tetapan"
+    "setInSettings": "Tetapkan di Tetapan",
+    "noExpenses": "Tiada perbelanjaan hari ini. Cabaran sudah dimenangi! 🏆"
   },
   "mysticCoins": {
     "title": "Syiling Mistik",

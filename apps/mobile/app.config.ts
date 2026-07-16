@@ -9,7 +9,7 @@ type ZenoExpoConfig = ExpoConfig & {
   splash?: {
     image: string;
     resizeMode?: 'cover' | 'contain';
-    backgroundColor?: string;
+    backgroundColor?: string | 'transparent';
   };
 };
 
@@ -23,11 +23,13 @@ const config: ZenoExpoConfig = {
   userInterfaceStyle: 'light',
   newArchEnabled: true,
   scheme: 'zeno',
-  // Native splash uses the branded icon; the animated React splash (splash-icon.png) takes over on load
+  // Native splash is intentionally transparent: it acts only as an OS-level
+  // bridge until JS loads, then hides immediately. The branded, animated React
+  // splash (below) is the real startup the user sees — no icon-on-white flash.
   splash: {
     image: './assets/splash-icon.png',
     resizeMode: 'contain',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'transparent',
   },
   assetBundlePatterns: ['**/*'],
   ios: {

@@ -49,6 +49,21 @@ export default function EditScreen() {
 
   const transaction = transactions.find((t) => t.id === id);
 
+  // Hooks must run unconditionally before any early return. Compute initial
+  // values from `transaction` with safe fallbacks (if not found we return early
+  // below, so the seeded values are never actually used).
+  const initialType = transaction?.type === 'income' ? 'income' : 'expense';
+  const initialAmount = transaction
+    ? (Math.abs(transaction.amountMinor) / 100).toFixed(2)
+    : '0.00';
+
+  const [amount, setAmount] = useState(initialAmount);
+  const [type, setType] = useState<'expense' | 'income'>(initialType);
+  const [category, setCategory] = useState<string>(
+    transaction?.categoryId || 'groceries'
+  );
+  const [note, setNote] = useState(transaction?.note || '');
+
   if (!transaction) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.surface }}>
@@ -68,18 +83,7 @@ export default function EditScreen() {
   }
 
   // TypeScript narrowing: after the early return, transaction is guaranteed to exist
-  // Use a const assertion to help TypeScript understand the narrowed type
-  const tx = transaction as typeof transaction & { id: string; amountMinor: number; categoryId: string; note?: string | null };
-
-  const initialType = tx.type === 'income' ? 'income' : 'expense';
-  const initialAmount = (Math.abs(tx.amountMinor) / 100).toFixed(2);
-
-  const [amount, setAmount] = useState(initialAmount);
-  const [type, setType] = useState<'expense' | 'income'>(initialType);
-  const [category, setCategory] = useState<string>(
-    tx.categoryId || 'groceries'
-  );
-  const [note, setNote] = useState(tx.note || '');
+  const tx = transaction;
 
   const categoryKeys = type === 'income' ? INCOME_CATEGORY_KEYS : EXPENSE_CATEGORY_KEYS;
 

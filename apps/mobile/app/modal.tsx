@@ -1,4 +1,4 @@
-import { Modal as RNModal, View, Text } from 'react-native';
+import { Modal as RNModal, View } from 'react-native';
 import React from 'react';
 import { colors } from '@/design/tokens';
 

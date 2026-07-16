@@ -102,7 +102,7 @@
     "health": "Salud",
     "education": "Educación",
     "salary": "Salario",
-    "freelance": "Freelance",
+    "freelance": "Autónomo",
     "investment": "Inversión",
     "rental": "Alquiler",
     "gift": "Regalo",
@@ -329,7 +329,8 @@
     "warning90": "🚨 ¡ALERTA ROJA! ¡Se ha ido el 90% del presupuesto! ¡Detén los gastos! 🚨",
     "overBudget": "¡Hoy te pasaste del presupuesto! Intenta de nuevo mañana 💪",
     "coinEarned": "¡Ganaste +1 Moneda Mística! 🪙",
-    "setInSettings": "Establecer en Ajustes"
+    "setInSettings": "Establecer en Ajustes",
+    "noExpenses": "Sin gastos hoy. ¡Reto ya ganado! 🏆"
   },
   "mysticCoins": {
     "title": "Monedas Místicas",

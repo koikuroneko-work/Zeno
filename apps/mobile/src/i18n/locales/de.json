@@ -329,7 +329,8 @@
     "warning90": "🚨 ROTER ALARM! 90% des Budgets sind weg! Stoppen Sie die Ausgaben! 🚨",
     "overBudget": "Heute über Budget! Versuchen Sie es morgen wieder 💪",
     "coinEarned": "Sie haben +1 Mystische Münze verdient! 🪙",
-    "setInSettings": "In Einstellungen festlegen"
+    "setInSettings": "In Einstellungen festlegen",
+    "noExpenses": "Keine Ausgaben heute. Herausforderung bereits gewonnen! 🏆"
   },
   "mysticCoins": {
     "title": "Mystische Münzen",

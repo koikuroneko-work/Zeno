@@ -128,7 +128,7 @@ export default function InsightsScreen() {
   const {
     thisMonthSummary, lastMonthSummary,
     monthlyDiff, monthlyDiffPercent,
-    thisWeekExpense, lastWeekExpense,
+    lastWeekExpense,
     weeklyDiff, weeklyDiffPercent,
     todayExpense, yesterdayExpense, dailyDiff,
     categoryBreakdown, totalCategoryExpense, maxCategory,
